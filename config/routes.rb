@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  get "home/index"
+  get "/login", to: "login#index", as: 'login'
+  post 'login/create', to: 'login#create', as: 'login_create'
+  delete 'logout', to: 'login#destroy', as: 'logout'
+
+  get "home/index"
+  root 'home#index'  # This sets the root route to the 'index' action in 'HomeController'
+
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
