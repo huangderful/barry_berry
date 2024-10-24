@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   delete 'logout', to: 'login#destroy', as: 'logout'
 
   get "home/index"
+  get "/posts/:id", to: "posts#show"
+
+  get "home/index"
   root 'home#index'  # This sets the root route to the 'index' action in 'HomeController'
 
 
