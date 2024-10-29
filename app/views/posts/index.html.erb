@@ -1,8 +1,10 @@
-<h1>Hello, This is the posts page!</h1>
+<h1>Posts</h1>
 <ul>
-  <% @aposts.each do |post| %>
+  <% @posts.each do |post| %>
     <li>
-      <%= post.title %>
+      <%= link_to post.title, post%>
     </li>
   <% end %>
 </ul>
+
+<%= "New Post", new_post_path %>

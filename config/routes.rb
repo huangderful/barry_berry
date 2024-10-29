@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   post 'login/create', to: 'login#create', as: 'login_create'
   delete 'logout', to: 'login#destroy', as: 'logout'
 
-  get "home/index"
-  get "/posts/:id", to: "posts#show"
+  resources :posts
+  # get '/posts"', to: 'posts#index'
+  # get '/posts/:id', to: 'posts#show'
+  # post 'posts/create', to: 'posts#create', as: 'post_create'
+  # put 'posts/:id/update', to: 'posts#update', as: 'post_update'
+  # delete 'posts/delete', to: 'posts#destroy', as: 'post_delete'
 
   get "home/index"
   root 'home#index'  # This sets the root route to the 'index' action in 'HomeController'
