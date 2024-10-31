@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_many :comments
   validates :title, presence: true
-  validates :body, presence: true, length: {minimum: 10}
-
+  validates :body, presence: true
+  validates :username, presence: true
   
 end

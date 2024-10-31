@@ -1,5 +1,15 @@
 <% if session[:current_user_id] %>
   <h1>Welcome <%= session[:current_user_id] %></h1>
+    <h2>Posts</h2>
+    <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <%= link_to post.title, post%>
+      </li>
+    <% end %>
+  </ul>
+
+
   <%= button_to 'Logout', logout_path, method: :delete, class: 'btn btn-danger' %>
 <% end %>
 

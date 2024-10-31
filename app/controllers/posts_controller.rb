@@ -18,6 +18,11 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    if session[:current_user_id] != @post.username
+      @show = false
+    else
+      @show = true
+    end
   end
 
   def update
@@ -31,18 +36,25 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    if session[:current_user_id] != @post.username
+      @show = false
+    else
+      @show = true
+    end
   end
 
   def destroy
     @post = Post.find(params[:id])
-    @post.destroy
+    if session[:current_user_id] == @post.username
+      @post.destroy
+      redirect_to root_path, status: :see_other
+    end
 
-    redirect_to root_path, status: :see_other
   end
 
   private
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :username)
     end
 
 end

@@ -1,3 +1,6 @@
 <h1>Edit Post</h1>
-
-<%= render "form", post: @post %>
+<% if @show %>
+    <%= render "form", post: @post %>
+<% else %>
+    <h1>NO PERMS LOSER</h1>
+<% end %>

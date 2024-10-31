@@ -1,14 +1,16 @@
 <h1><%= @post.title %></h1>
 <h3><%= @post.username%></h3>
+<h4> Last Updated @ <%= @post.updated_at %></h4>
 <p><%= @post.body %></p>
-
-<ul>
-<li><%= link_to "Edit", edit_post_path(@post) %></li>
-  <li><%= link_to "Destroy", post_path(@post), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
+<% if @show %>
+    <ul>
+    <li><%= link_to "Edit", edit_post_path(@post) %></li>
+    <li><%= link_to "Delete", post_path(@post), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                    } %></li>
+    </ul>
+<% end %>
 
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
@@ -25,10 +27,9 @@
 
 
 <h2>Add a comment:</h2>
-<%= form_with model: [ @post, @post.comments.build ] do |form| %>
+<%= form_with model: comment do |form| %>
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
+  <%= form.hidden_field :username, value: session[:current_user_id]%>
   </p>
   <p>
     <%= form.label :body %><br>

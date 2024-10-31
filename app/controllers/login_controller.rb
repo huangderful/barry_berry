@@ -1,6 +1,11 @@
 class LoginController < ApplicationController
   def index
-    @user = User.new
+    if !session[:current_user_id] 
+      @user = User.new
+    else
+      redirect_to '/'
+    end
+
   end
   def create
     @user = User.find_by(username: user_params[:username])
@@ -26,6 +31,6 @@ class LoginController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :title, :body)
+    params.require(:user).permit(:username)
   end
 end
