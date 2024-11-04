@@ -1,7 +1,10 @@
 <h1><%= @post.title %></h1>
-<h3><%= @post.username%></h3>
-<h4> Last Updated @ <%= @post.updated_at %></h4>
 <p><%= @post.body %></p>
+<h3> - <%= @post.username%></h3>
+<h4> Last Updated @ <%= @post.updated_at %></h4>
+
+<%= button_to 'Home', '/', method: :get, class: 'btn btn-danger'%>
+
 <% if @show %>
     <ul>
     <li><%= link_to "Edit", edit_post_path(@post) %></li>
@@ -15,13 +18,7 @@
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
   <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
+    <strong><%= comment.commenter %></strong>: <%= comment.body%>
   </p>
 <% end %>
 
